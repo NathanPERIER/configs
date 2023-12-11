@@ -1,0 +1,15 @@
+
+let mapleader = ","
+
+nmap <silent> <leader><space><space> :tab terminal<CR>
+
+command Eb tabe ~/.vimrc
+command Sb so ~/.vimrc
+
+syntax on
+set tabstop=4
+set shiftwidth=4
+set smartindent
+
+set mouse-=a
+
