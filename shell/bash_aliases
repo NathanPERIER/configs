@@ -1,0 +1,81 @@
+
+# colour various commands by default
+if [ "$colour_support" = yes ]; then
+	# enable color support of ls
+	if [ -x /usr/bin/dircolors ]; then
+    	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    	alias ls='ls --color=auto'
+	fi
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+
+	alias ip='ip --color=auto'
+fi
+
+
+# ls aliases
+alias l='ls -CF'
+alias ll='ls -l'
+alias lli='ls -li'
+alias lla='ls -lA'
+
+# clear the "$?" value
+alias ok=':'
+alias mb=':'
+
+# quickly clear the terminal
+alias xx='clear'
+
+# force python to version 3 by default
+alias python='python3'
+alias pip='pip3'
+
+# quick edit and reload of the .bashrc
+alias eb='vim ~/.bashrc'
+alias sb='. ~/.bashrc'
+
+# get public ip
+alias ipinfo='curl ipinfo.io/ip'
+
+# quick compression and decompression
+alias mktar='tar -czvf'
+alias untar='tar -xvf'
+
+# quick find by name (in the current directory)
+alias f='find . -name'
+
+# command to check the syslog quickly
+for file in '/var/log/syslog' '/var/log/messages'
+do
+    if [[ -f "$file" ]]; then
+        maybe_sudo=''
+        if [[ ! -r "$file" ]]; then
+            maybe_sudo='sudo '
+        fi
+        alias syslog="${maybe_sudo}tail -f ${file}"
+		unset maybe_sudo
+        break
+    fi
+done
+
+# open a new terminal or a file explorer (native desktop only)
+alias here='gnome-terminal'
+alias xo='xdg-open'
+
+# get the public IP
+alias ipinfo='curl ipinfo.io/ip'
+
+# for when the compilation takes way too much time
+alias mk="make -j $(nproc)"
+
+# for when even Ctrl+C won't end a program
+alias solong='pkill -9'
+
+# for when I try to quit the terminal like it's a vim editor
+alias q='exit'
+alias wq='exit'
+
+# quick computer shutdown (disabled by default because it is dangerous on servers)
+# alias dodo='shutdown +0'
