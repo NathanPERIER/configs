@@ -32,6 +32,14 @@ alias xx='clear'
 alias python='python3'
 alias pip='pip3'
 
+# you do not want to ask
+alias eclp='rm -f ~/.eclipse_history; rlwrap eclipse'
+
+# by the way, I use vim
+alias ed='vim'
+alias nano='vim'
+alias emacs='vim'
+
 # quick edit and reload of the .bashrc
 alias eb='vim ~/.bashrc'
 alias ebv='vim ~/.bash_variables'
