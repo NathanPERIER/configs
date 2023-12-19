@@ -1,8 +1,23 @@
 [alias]
-    lg = log -n 10 --color --graph --pretty=format:'%C(cyan bold)%h%Creset - %C(blue)%an%Creset, %ar%C(yellow)%d%Creset%n %C(normal dim italic)%s%Creset'    
-    poule = !git pull && echo '🐔'
+    st = status -sb
+    ll = log --graph --decorate --pretty=oneline --abbrev-commit
+    lg = log --graph --color --pretty=format:'%C(cyan bold)%h%Creset - %C(blue)%an%Creset, %ar%C(yellow)%d%Creset%n %C(normal dim italic)%s%Creset'
+    df = difftool -t vimdiff -y
+    lb = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
+    rb = branch -D
+    last = log -1 HEAD --stat
+    rclone = clone --recurse-submodules -j$(nproc)
+    sup = submodule update --recursive
     staged = diff --name-only --cached
+    unstage = reset -q HEAD --
+    sweep = clean -x -d -i
+    wipe = clean -X -d -f
     nope = reset --soft HEAD~
+    bignope = !git reset --hard HEAD && git clean -d -f
+    poule = !git pull && echo '🐔'
+    pousse = !git push && echo '🌱'
+    fpush = "!f() { read -p \"You are currently on branch $(git branch --show-current), do you really want to force an update on the origin ? (n/Y) \" yn; if [[ \"yn\" = 'Y' ]]; then git push -f \"$@\"; else echo 'Canceled'; fi }; f"
+    cfg = !vim ~/.gitconfig
 [core]
     editor = /usr/bin/vim
 [init]
