@@ -34,6 +34,9 @@ alias pip='pip3'
 
 # quick edit and reload of the .bashrc
 alias eb='vim ~/.bashrc'
+alias ebv='vim ~/.bash_variables'
+alias ebl='vim ~/.bash_local'
+alias eba='vim ~/.bash_aliases'
 alias sb='. ~/.bashrc'
 
 # get public ip
