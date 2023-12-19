@@ -41,6 +41,12 @@ if [ -f ~/.bash_variables ]; then
 fi
 
 
+# local definitions
+if [ -f ~/.bash_local ]; then
+	. ~/.bash_local
+fi
+
+
 # alias definitions
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
