@@ -50,6 +50,9 @@ alias sb='. ~/.bashrc'
 # get public ip
 alias ipinfo='curl ipinfo.io/ip'
 
+# download musics
+alias music-dl='yt-dlp --extract-audio --audio-format mp3 --embed-thumbnail'
+
 # quick compression and decompression
 alias mktar='tar -czvf'
 alias untar='tar -xvf'
