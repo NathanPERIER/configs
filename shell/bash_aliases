@@ -45,6 +45,7 @@ alias eb='vim ~/.bashrc'
 alias ebv='vim ~/.bash_variables'
 alias ebl='vim ~/.bash_local'
 alias eba='vim ~/.bash_aliases'
+alias ebp='vim ~/.bash_prompt'
 alias sb='. ~/.bashrc'
 
 # edit or ls
