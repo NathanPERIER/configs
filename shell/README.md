@@ -1,9 +1,7 @@
 
-# Shell configuration files
+# Shell configuration
 
-## Bash
+## Common files
 
-- `bash_aliases` -> `~/.bash_aliases`
-- `bash_variables` -> `~/.bash_variables`
-- `bashrc` -> `~/.bashrc`
 - `profile` -> `~/.profile`
+

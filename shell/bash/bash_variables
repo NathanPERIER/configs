@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if dpkg -s xserver-xorg | grep '^Status' | grep installed > /dev/null; then
+	export MACHINE_IS_SERVER=true
+else
+	export MACHINE_IS_SERVER=false
+fi
+
+
 # set variable identifying the chroot you work in
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
@@ -24,5 +31,4 @@ path_colour_code='34' # blue
 # if [ "$colour_support" = yes ]; then
 #      export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 # fi
-
 
