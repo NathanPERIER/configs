@@ -116,6 +116,27 @@ alias untar='tar -xvf'
 # quick find by name (in the current directory)
 alias f='find . -name'
 
+# quick find by content and by name
+function ff {
+	if [[ $# -eq 0 ]] || [[ $# -gt 2 ]] || [[ "$1" = '-h' ]]; then
+		echo 'usage: ff <pattern> [filename_pattern]'
+		if [[ $# -eq 0 ]] || [[ $# -gt 2 ]]; then
+			return 1
+		else
+			return 0
+		fi
+	fi 
+	pattern="$1"
+	shift
+	if [[ $# -ge 1 ]]; then
+		name_args=('-name' "$1")
+	else
+		name_args=()
+	fi
+	find . -type f "${name_args[@]}" -print0 | xargs -0 grep -l "$pattern"
+	return $?
+}
+
 # command to check the syslog quickly
 for file in '/var/log/syslog' '/var/log/messages'
 do
