@@ -76,6 +76,32 @@ function led {
 	fi
 }
 
+# mkdir and cd
+function mkd {
+	mkdir "$@"
+	if [[ $? -ne 0 ]]; then
+		return $?
+	fi
+	if [[ "$1" = '-p' ]]; then
+		shift
+	fi
+	cd "$1"
+}
+
+# remove current directory and go back to parent
+function rmd {
+	old_workdir="$OLDPWD"
+	dirname=$(basename "$PWD")
+	cd ..
+	rmdir "$dirname"
+	res=$?
+	if [[ $res -ne 0 ]]; then
+		cd "$OLDPWD"
+	fi
+	export OLDPWD="$old_workdir"
+	return $res
+}
+
 # get public ip
 alias ipinfo='curl ipinfo.io/ip'
 
