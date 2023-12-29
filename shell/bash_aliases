@@ -1,8 +1,8 @@
 
 # colour various commands by default
 if [ "$colour_support" = yes ]; then
-	# enable color support of ls
-	if [ -x /usr/bin/dircolors ]; then
+    # enable color support of ls
+    if [ -x /usr/bin/dircolors ]; then
     	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     	alias ls='ls --color=auto'
 	fi
@@ -46,6 +46,35 @@ alias ebv='vim ~/.bash_variables'
 alias ebl='vim ~/.bash_local'
 alias eba='vim ~/.bash_aliases'
 alias sb='. ~/.bashrc'
+
+# edit or ls
+function led {
+	if [[ $# -ne 1 ]] || [[ "$1" = '-h' ]]; then
+		echo 'usage: led <file>'
+		if [[ $# -ne 1 ]]; then 
+			return 1
+		else 
+			return 0
+		fi
+	fi
+	file="$1"
+	if [[ ! -e "$file" ]]; then
+		parent_dir=$(dirname "$file")
+		if [[ ! -d "$parent_dir" ]]; then
+			echo 'path to file does not exist'
+			return 1
+		fi
+		echo 'file does not exist, creating'
+		ed "$file"
+	elif [[ -d "$file" ]]; then
+		ll "$file"
+	elif [[ -f "$file" ]]; then
+		ed "$file"
+	else
+		echo "that's a weird file you got there, mate"
+		return 1
+	fi
+}
 
 # get public ip
 alias ipinfo='curl ipinfo.io/ip'
