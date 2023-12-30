@@ -23,9 +23,6 @@ case "$TERM" in
 esac
 
 
-prompt_style='default'
-user_colour_code='32' # green
-path_colour_code='34' # blue
 
 # coloured GCC warnings and errors
 # if [ "$colour_support" = yes ]; then
