@@ -1,10 +1,26 @@
 #!/bin/bash
 
-if dpkg -s xserver-xorg | grep '^Status' | grep installed > /dev/null; then
-	export MACHINE_IS_SERVER=true
+if printenv | grep '^WSL_DISTRO_NAME=' > /dev/null; then
+	export MACHINE_TYPE='wsl'
+elif dpkg -s xserver-xorg | grep '^Status' | grep installed > /dev/null; then
+	export MACHINE_TYPE='desktop'
 else
-	export MACHINE_IS_SERVER=false
+	export MACHINE_TYPE='server'
 fi
+
+
+if printenv | grep '^GNOME_TERMINAL_SCREEN=' > /dev/null; then
+	export TERMINAL_TYPE='gnome'
+elif printenv | grep '^WT_SESSION=' > /dev/null; then
+	export TERMINAL_TYPE='windows'
+elif printenv | grep '^TERM_PROGRAM=vscode$' > /dev/null; then
+	export TERMINAL_TYPE='vscode'
+elif printenv | grep '^TERM=xterm' > /dev/null; then
+	export TERMINAL_TYPE='xterm'
+else
+	export TERMINAL_TYPE='other'
+fi
+
 
 
 # set variable identifying the chroot you work in

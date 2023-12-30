@@ -168,5 +168,7 @@ alias solong='pkill -9'
 alias q='exit'
 alias wq='exit'
 
-# quick computer shutdown (disabled by default because it is dangerous on servers)
-# alias dodo='shutdown +0'
+# quick computer shutdown
+if [[ "$MACHINE_TYPE" = 'desktop' ]]; then
+	alias dodo='shutdown +0'
+fi
