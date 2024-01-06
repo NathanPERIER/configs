@@ -155,6 +155,11 @@ done
 alias here='gnome-terminal'
 alias xo='xdg-open'
 
+# download music
+if which yt-dlp > /dev/null; then
+	alias mp3-dl='yt-dlp --extract-audio --audio-format mp3 --embed-thumbnail'
+fi
+
 # get the public IP
 alias ipinfo='curl ipinfo.io/ip'
 
