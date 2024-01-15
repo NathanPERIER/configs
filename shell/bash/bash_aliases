@@ -70,7 +70,7 @@ function led {
 	elif [[ -d "$file" ]]; then
 		ll "$file"
 	elif [[ -f "$file" ]]; then
-		ed "$file"
+		[[ -w "$file" ]] && ed "$file" || less "$file"
 	else
 		echo "that's a weird file you got there, mate"
 		return 1
