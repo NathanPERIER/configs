@@ -10,8 +10,8 @@
     sup = submodule update --recursive
     staged = diff --name-only --cached
     unstage = reset -q HEAD --
-    sweep = clean -x -d -i
-    wipe = clean -X -d -f
+    sweep = clean -X -d -f   # Removes all ignored files
+    wipe = reset --hard HEAD # Removes all modifications (staged and untracked)
     nope = reset --soft HEAD~
     bignope = !git reset --hard HEAD && git clean -d -f
     poule = !git pull && echo '🐔'
