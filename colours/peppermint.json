@@ -1,0 +1,23 @@
+{
+  "name": "Peppermint",
+  "black": "#353535",
+  "red": "#E64569",
+  "green": "#89D287",
+  "yellow": "#DAB752",
+  "blue": "#439ECF",
+  "purple": "#D961DC",
+  "cyan": "#64AAAF",
+  "white": "#B3B3B3",
+  "brightBlack": "#535353",
+  "brightRed": "#E4859A",
+  "brightGreen": "#A2CCA1",
+  "brightYellow": "#E1E387",
+  "brightBlue": "#6FBBE2",
+  "brightPurple": "#E586E7",
+  "brightCyan": "#96DCDA",
+  "brightWhite": "#DEDEDE",
+  "background": "#141414",
+  "foreground": "#C7C7C7",
+  "selectionBackground": "#141414",
+  "cursorColor": "#C7C7C7"
+}
