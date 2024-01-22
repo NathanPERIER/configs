@@ -3,5 +3,5 @@
 
 ## Common files
 
-- `profile` -> `~/.profile`
+- `profile.sh` -> `~/.profile`
 
