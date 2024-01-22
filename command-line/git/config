@@ -17,7 +17,8 @@
     poule = !git pull && echo '🐔'
     pousse = !git push && echo '🌱'
     fpush = "!f() { read -p \"You are currently on branch $(git branch --show-current), do you really want to force an update on the origin ? (n/Y) \" yn; if [[ \"yn\" = 'Y' ]]; then git push -f \"$@\"; else echo 'Canceled'; fi }; f"
-    cfg = !vim ~/.gitconfig
+    cfg = !vim ~/.config/git/config
+    lcfg = !vim ~/.gitconfig
 [core]
     editor = /usr/bin/vim
 [init]
