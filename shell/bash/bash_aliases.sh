@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # colour various commands by default
 if [ "$colour_support" = yes ]; then
@@ -42,10 +43,10 @@ alias emacs='vim'
 
 # quick edit and reload of the .bashrc
 alias eb='vim ~/.bashrc'
-alias ebv='vim ~/.bash_variables'
+alias ebv='vim ~/.config/bash/variables'
 alias ebl='vim ~/.bash_local'
-alias eba='vim ~/.bash_aliases'
-alias ebp='vim ~/.bash_prompt'
+alias eba='vim ~/.config/bash/aliases'
+alias ebp='vim ~/.config/bash/prompt'
 alias sb='. ~/.bashrc'
 
 # edit or ls

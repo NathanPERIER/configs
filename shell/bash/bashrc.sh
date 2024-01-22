@@ -36,8 +36,8 @@ PS1='\u@\h:\w\$ '
 
 
 # variables
-if [ -f ~/.bash_variables ]; then
-	. ~/.bash_variables
+if [ -f ~/.config/bash/variables ]; then
+	. ~/.config/bash/variables
 fi
 
 
@@ -48,14 +48,14 @@ fi
 
 
 # alias definitions
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+if [ -f ~/.config/bash/aliases ]; then
+    . ~/.config/bash/aliases
 fi
 
 
 # custom prompt
-if [ -f ~/.bash_prompt ]; then
-    . ~/.bash_prompt
+if [ -f ~/.config/bash/prompt ]; then
+    . ~/.config/bash/prompt
 fi
 
 
