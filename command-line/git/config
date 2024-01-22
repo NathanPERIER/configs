@@ -5,6 +5,7 @@
     df = difftool -t vimdiff -y
     lb = branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate
     rb = branch -D
+    root = rev-parse --show-toplevel
     last = log -1 HEAD --stat
     rclone = clone --recurse-submodules -j$(nproc)
     sup = submodule update --recursive
@@ -19,6 +20,7 @@
     fpush = "!f() { read -p \"You are currently on branch $(git branch --show-current), do you really want to force an update on the origin ? (n/Y) \" yn; if [[ \"yn\" = 'Y' ]]; then git push -f \"$@\"; else echo 'Canceled'; fi }; f"
     cfg = !vim ~/.config/git/config
     lcfg = !vim ~/.gitconfig
+    rcfg = "!repo_root=$(git root) && vim \"${repo_root}/.git/config\""
 [core]
     editor = /usr/bin/vim
 [init]
