@@ -31,7 +31,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 
-this_dir=$(dirname $(realpath "$0"))
+this_dir=$(dirname "$(realpath "$0")")
 
 install_file() {
 	# usage: install_file <source> <destination>
