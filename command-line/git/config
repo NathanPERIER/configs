@@ -9,7 +9,7 @@
     last = log -1 HEAD --stat
     rclone = clone --recurse-submodules -j$(nproc)
     sup = submodule update --recursive
-    staged = diff --name-only --cached
+    staged = diff --cached
     unstage = reset -q HEAD --
     sweep = clean -X -d -f   # Removes all ignored files
     wipe = reset --hard HEAD # Removes all modifications (staged and untracked)
