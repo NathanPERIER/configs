@@ -108,11 +108,13 @@ function rmd {
 alias ipinfo='curl ipinfo.io/ip'
 
 # download musics
-alias music-dl='yt-dlp --extract-audio --audio-format mp3 --embed-thumbnail'
+if which yt-dlp > /dev/null; then
+	alias music-dl='yt-dlp --extract-audio --audio-format mp3 --embed-thumbnail'
+fi
 
 # quick compression and decompression
-alias mktar='tar -czvf'
-alias untar='tar -xvf'
+alias mktgz='tar -czvf'
+alias untgz='tar -xvf'
 
 # quick find by name (in the current directory)
 alias f='find . -name'
@@ -153,16 +155,10 @@ do
 done
 
 # open a new terminal or a file explorer (native desktop only)
-alias here='gnome-terminal'
-alias xo='xdg-open'
-
-# download music
-if which yt-dlp > /dev/null; then
-	alias mp3-dl='yt-dlp --extract-audio --audio-format mp3 --embed-thumbnail'
+if [[ "$MACHINE_TYPE" = 'desktop' ]]; then
+	alias here='gnome-terminal'
+	alias xo='xdg-open'
 fi
-
-# get the public IP
-alias ipinfo='curl ipinfo.io/ip'
 
 # for when the compilation takes way too much time
 alias mk="make -j $(nproc)"
