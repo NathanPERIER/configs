@@ -30,8 +30,11 @@ fi
 
 
 prompt_user='\u'
-if [[ -n "$SUDO_USER" ]]; then
-	prompt_user="($SUDO_USER as \u)"
+if [[ -n "$prompt_detect_sudo" ]]; then
+	if [[ "$prompt_detect_sudo" = 'true' ]] && [[ -n "$SUDO_USER" ]]; then
+		prompt_user="($SUDO_USER as \u)"
+	fi
+	unset prompt_detect_sudo
 fi
 
 prompt_path='\w'
