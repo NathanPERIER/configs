@@ -3,8 +3,8 @@ let mapleader = ","
 
 nmap <silent> <leader><space><space> :tab terminal<CR>
 
-command Eb tabe ~/.vimrc
-command Sb so ~/.vimrc
+command Ecfg tabe ~/.vimrc
+command Lcfg so ~/.vimrc
 
 syntax on
 set tabstop=4

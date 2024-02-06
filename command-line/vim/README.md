@@ -1,4 +1,12 @@
 
 # Vim configuration files
 
-Location : `~/.vimrc`
+## Install
+
+- `vimrc` -> `~/.vimrc`
+
+## Content
+
+- Enable colour syntax
+- Disable mouse interaction
+- Open terminal pane with `comma, space, space`
