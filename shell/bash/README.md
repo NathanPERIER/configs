@@ -72,3 +72,39 @@ The `~/.bash_local` file is intended to set machine-specific variables. It can n
 
 > Note: if the variable `colour_support` is set to `yes`, automatic colouring will be enabled for `ls`, `grep` and `ip` (i.e. the text will coloured only if the output is a terminal). This is autodetected in the variables script but can be overridden.
 
+### Prompt
+
+There are several prompts presets that can be enabled by setting the `prompt_style` and `colour_prompt_style` in the local configurtion file. By default, `colour_prompt_style` takes the value of `prompt_style`, which is the `default` prompt.
+
+For coloured prompts, the user can also define the `user_colour_code` and `path_colour_code` (from `30` to `37`) to tweak the colours. By default, the username and hostname are in green for non-root users and mangenta for root, and the path is in blue.
+
+If the variable `prompt_detect_sudo` is set to `true`, the prompt will display `(user as root)` instead of `root` as the user when it detects that the `sudo` command is being used. This is not enabled for the `basic` prompt.
+
+If the variable `prompt_shorten_path` is set to `true` and there is an executable in `PATH` called `pwd-short`, the prompt will use this instead of the default path. It is one way to reduce the space taken by the prompt when working with very long paths. This is not enabled for the `basic` prompt.
+
+If the `PS1` variable is defined in the local configuration file, the prompt style variables must be set to `local` to prevent the script from overriding the value.
+
+Here are the values that can be used for prompt styles :
+
+#### `basic`
+
+The most classic style of bash prompt that most distributions will use by default. This is the only preset that does not support `prompt_detect_sudo` and `prompt_shorten_path`.
+
+#### `default`
+
+Essentially the same as `basic`, but supports all the configuration variables.
+
+#### `owo`
+
+For colour prompts only. Displays a face at the left of the prompt that gets sadge when a command fails.
+
+Detects if the previous command ended at the beginning of a new line and goes to the next line if necessary.
+
+#### `multiline`
+
+For colour prompts only. Displays the prompt on two lines with :
+
+- The date, the error code (if non-zero) and the path on the first line
+- The user and the hostname
+
+Detects if the previous command ended at the beginning of a new line and goes to the next line if necessary.
