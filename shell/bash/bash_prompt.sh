@@ -61,7 +61,7 @@ else
 	elif [[ "$prompt_style" = 'basic' ]]; then
 		PS1="${debian_chroot:+($debian_chroot)}"'\u@\h:\w\$ '
 	else # default
-		PS1="${debian_chroot:+($debian_chroot)}${prompt_user}"'\u@'"$prompt_path"':\w\$ '
+		PS1="${debian_chroot:+($debian_chroot)}${prompt_user}"'\u@\h:'"$prompt_path"'\$ '
 	fi
 fi
 
