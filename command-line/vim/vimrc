@@ -1,4 +1,8 @@
 
+if &shell =~# 'fish$'
+    set shell=bash
+endif
+
 let mapleader = ","
 
 nmap <silent> <leader><space><space> :tab terminal<CR>
