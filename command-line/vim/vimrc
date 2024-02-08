@@ -1,19 +1,12 @@
 
 if &shell =~# 'fish$'
-    set shell=bash
+	set shell=bash
 endif
 
-let mapleader = ","
 
-nmap <silent> <leader><space><space> :tab terminal<CR>
+source ~/.vim/options.vim
 
-command Ecfg tabe ~/.vimrc
-command Lcfg so ~/.vimrc
+source ~/.vim/commands.vim
 
-syntax on
-set tabstop=4
-set shiftwidth=4
-set smartindent
-
-set mouse-=a
+source ~/.vim/mappings.vim
 
