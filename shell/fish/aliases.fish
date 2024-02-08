@@ -3,10 +3,10 @@
 # colour various commands by default
 if test "$colour_support" = yes
     # enable color support of ls
-    if test -x /usr/bin/dircolors
-    	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    	alias ls='ls --color=auto'
-	end
+    # if test -x /usr/bin/dircolors
+    # 	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    # 	alias ls='ls --color=auto'
+	# end
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'

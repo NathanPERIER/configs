@@ -22,3 +22,11 @@ else
 end
 
 
+switch $TERM
+	case 'xterm-color' '*-256color'
+		set colour_support yes
+	case '*'
+		set colour_support no
+end
+
+
