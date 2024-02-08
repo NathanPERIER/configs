@@ -10,3 +10,5 @@ source ~/.vim/commands.vim
 
 source ~/.vim/mappings.vim
 
+source ~/.vim/filetypes.vim
+
