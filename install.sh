@@ -18,11 +18,13 @@ fi
 
 
 do_bash=false
+do_fish=false
 do_vim=false
 do_git=false
 while [[ $# -gt 0 ]]; do
 	case "$1" in
 		bash) do_bash=true;;
+		fish) do_fish=true;;
 		git)  do_git=true;;
 		vim)  do_vim=true;;
 		*)    usage; exit 1;;
@@ -44,7 +46,6 @@ install_file() {
 }
 
 
-# custom directories
 if [[ "$do_bash" = true ]] || [[ "$do_all" = true ]]; then
 	bash_config_dir="${HOME}/.config/bash"
 	[[ -d "$bash_config_dir" ]] || mkdir "$bash_config_dir"
@@ -54,6 +55,19 @@ if [[ "$do_bash" = true ]] || [[ "$do_all" = true ]]; then
 	install_file "${this_dir}/shell/bash/bash_variables.sh" "${bash_config_dir}/variables"
 	install_file "${this_dir}/shell/bash/bash_aliases.sh" "${bash_config_dir}/aliases"
 	install_file "${this_dir}/shell/bash/bash_prompt.sh" "${bash_config_dir}/prompt"
+fi
+
+
+if [[ "$do_fish" = true ]] || [[ "$do_all" = true ]]; then
+	fish_config_dir="${HOME}/.config/fish"
+	fish_functions_dir="${fish_config_dir}/functions"
+	mkdir -p "$fish_functions_dir"
+
+	install_file "${this_dir}/shell/fish/config.fish" "${fish_config_dir}/config.fish"
+	install_file "${this_dir}/shell/fish/variables.fish" "${fish_config_dir}/variables.fish"
+	install_file "${this_dir}/shell/fish/aliases.fish" "${fish_config_dir}/aliases.fish"
+	install_file "${this_dir}/shell/fish/functions/fish_prompt.fish" "${fish_functions_dir}/fish_prompt.fish"
+	install_file "${this_dir}/shell/fish/functions/fish_greeting.fish" "${fish_functions_dir}/fish_greeting.fish"
 fi
 
 
