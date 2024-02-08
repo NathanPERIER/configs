@@ -85,7 +85,14 @@ fi
 
 
 if [[ "$do_vim" = true ]] || [[ "$do_all" = true ]]; then
+	vim_config_dir="${HOME}/.vim"
+	[[ -d "$vim_config_dir" ]] || mkdir "$vim_config_dir"
+
 	install_file "${this_dir}/command-line/vim/vimrc" ~/.vimrc
+	install_file "${this_dir}/command-line/vim/options.vim" "${vim_config_dir}/options.vim"
+	install_file "${this_dir}/command-line/vim/commands.vim" "${vim_config_dir}/commands.vim"
+	install_file "${this_dir}/command-line/vim/mappings.vim" "${vim_config_dir}/mappings.vim"
+	install_file "${this_dir}/command-line/vim/filetypes.vim" "${vim_config_dir}/filetypes.vim"
 fi
 
 
