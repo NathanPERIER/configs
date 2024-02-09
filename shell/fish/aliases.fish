@@ -4,7 +4,7 @@
 if test "$colour_support" = yes
     # enable color support of ls
     # if test -x /usr/bin/dircolors
-    # 	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    # 	test -r ~/.dircolors && eval (dircolors -b ~/.dircolors) || eval (dircolors -b)
     # 	alias ls='ls --color=auto'
 	# end
 
@@ -54,9 +54,9 @@ alias sb='. ~/.config/fish/config.fish'
 
 # edit or ls
 function led
-	if test $(count $argv) -ne 1 || test $argv[1] = '-h'
+	if test (count $argv) -ne 1 || test $argv[1] = '-h'
 		echo 'usage: led <file>'
-		if test $(count $argv) -ne 1
+		if test (count $argv) -ne 1
 			return 1
 		else 
 			return 0
@@ -64,7 +64,7 @@ function led
 	end
 	set file $argv[1]
 	if test ! -e $file
-		set parent_dir $(dirname $file)
+		set parent_dir (dirname $file)
 		if test ! -d $parent_dir
 			echo 'path to file does not exist'
 			return 1
@@ -96,7 +96,7 @@ end
 # remove current directory and go back to parent
 function rmd
 	set old_workdir "$OLDPWD"
-	set dirname $(basename "$PWD")
+	set dirname (basename "$PWD")
 	cd ..
 	rmdir $dirname
 	set res $status
@@ -124,9 +124,9 @@ alias f='find . -name'
 
 # quick find by content and by name
 function ff
-	if test $(count $argv) -eq 0 || test $(count $argv) -gt 2 || test $argv[1] = '-h'
+	if test (count $argv) -eq 0 || test (count $argv) -gt 2 || test $argv[1] = '-h'
 		echo 'usage: ff <pattern> [filename_pattern]'
-		if test $(count $argv) -eq 0 || test $(count $argv) -gt 2
+		if test (count $argv) -eq 0 || test (count $argv) -gt 2
 			return 1
 		else
 			return 0
@@ -134,7 +134,7 @@ function ff
 	end
 	set pattern $argv[1]
 	unset $argv[1]
-	if test $(count $argv) -ge 1
+	if test (count $argv) -ge 1
 		set name_args '-name' $argv[1]
 	else
 		set name_args
@@ -163,7 +163,7 @@ if test "$MACHINE_TYPE" = 'desktop'
 end
 
 # for when the compilation takes way too much time
-alias mk="make -j $(nproc)"
+alias mk="make -j (nproc)"
 
 # for when even Ctrl+C won't end a program
 alias solong='pkill -9'
