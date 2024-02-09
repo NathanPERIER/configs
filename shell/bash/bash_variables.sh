@@ -15,7 +15,11 @@ elif printenv | grep '^WT_SESSION=' > /dev/null; then
 	export TERMINAL_TYPE='windows'
 elif printenv | grep '^TERM_PROGRAM=vscode$' > /dev/null; then
 	export TERMINAL_TYPE='vscode'
+elif printenv | grep '^TERM_PROGRAM=tmux$' > /dev/null; then
+	export TERMINAL_TYPE='tmux'
 elif printenv | grep '^TERM=xterm' > /dev/null; then
+	export TERMINAL_TYPE='xterm'
+elif printenv | grep '^TERM=rxvt' > /dev/null; then
 	export TERMINAL_TYPE='xterm'
 else
 	export TERMINAL_TYPE='other'
@@ -31,11 +35,6 @@ fi
 colour_support=no
 case "$TERM" in
     xterm-color|*-256color) colour_support=yes;;
-esac
-
-terminal_is_xterm=no
-case "$TERM" in
-	xterm*|rxvt*) terminal_is_xterm=yes;;
 esac
 
 

@@ -79,8 +79,7 @@ unset prompt_path
 
 
 # If this is an xterm set the title to user@host:dir
-if [[ "$terminal_is_xterm" = 'yes' ]]; then
+if [[ "$TERMINAL_TYPE" = 'xterm' ]]; then
     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
 fi
-unset terminal_is_xterm
 
