@@ -37,6 +37,7 @@ this_dir=$(dirname "$(realpath "$0")")
 
 install_file() {
 	# usage: install_file <source> <destination>
+	echo "INSTALL $1 -> $2"
 	if [[ -O "$1" ]]; then
 		[[ -f "$2" ]] && rm "$2"
 		ln "$1" "$2"
@@ -47,6 +48,8 @@ install_file() {
 
 
 if [[ "$do_bash" = true ]] || [[ "$do_all" = true ]]; then
+	echo " ===== Bash =========================="
+
 	bash_config_dir="${HOME}/.config/bash"
 	[[ -d "$bash_config_dir" ]] || mkdir "$bash_config_dir"
 
@@ -59,6 +62,8 @@ fi
 
 
 if [[ "$do_fish" = true ]] || [[ "$do_all" = true ]]; then
+	echo " ===== Fish =========================="
+
 	fish_config_dir="${HOME}/.config/fish"
 	fish_functions_dir="${fish_config_dir}/functions"
 	mkdir -p "$fish_functions_dir"
@@ -72,8 +77,12 @@ fi
 
 
 if [[ "$do_git" = true ]] || [[ "$do_all" = true ]]; then
-	git_config_dir=".config/git"
+	echo " ===== Git =========================="
+
+	git_config_dir='.config/git'
+	git_scripts_dir='.local/share/git'
 	[[ -d ~/"$git_config_dir" ]] || mkdir ~/"$git_config_dir"
+	mkdir -p ~/"$git_scripts_dir"
 	
 	git_config_file="${git_config_dir}/config"
 	install_file "${this_dir}/command-line/git/config" ~/"$git_config_file"
@@ -81,10 +90,16 @@ if [[ "$do_git" = true ]] || [[ "$do_all" = true ]]; then
 	if ! git config --global --get-all include.path | grep '^'"~/$git_config_file"'$' > /dev/null; then
 		git config --global --add include.path "~/$git_config_file"
 	fi
+
+	for file in "${this_dir}/command-line/git/scripts"/*.sh; do
+		install_file "${file}" ~/"$git_scripts_dir/$(basename "$file")"
+	done
 fi
 
 
 if [[ "$do_vim" = true ]] || [[ "$do_all" = true ]]; then
+	echo " ===== Vim =========================="
+
 	vim_config_dir="${HOME}/.vim"
 	[[ -d "$vim_config_dir" ]] || mkdir "$vim_config_dir"
 
