@@ -143,6 +143,43 @@ function ff {
 	return $?
 }
 
+# removes or adds an extension to a file (typically .tmp, .bak, ...)
+function mext {
+    if [[ $# -ne 2 ]]; then
+        echo 'usage: mext <file> <extension>'
+        return 1
+    fi
+    if [[ "$1" == *"$2" ]]; then
+        with_ext="$1"
+        ext_begin=$((${#with_ext}-${#2}-1))
+        without_ext="${1:0:ext_begin}"
+    else
+        without_ext="$1"
+        with_ext="${without_ext}.$2"
+    fi
+    if [[ -f "$with_ext" ]]; then
+        if [[ -f "$without_ext" ]]; then
+            timestamp=$(date +%s%3N)
+            temp_file=".${without_ext}.$$.${timstamp}.tmp"
+            mv "$without_ext" "$temp_file"
+            mv "$with_ext" "$without_ext"
+            mv "$temp_file" "$with_ext"
+            echo "$without_ext <-> $with_ext"
+        else
+            mv "$with_ext" "$without_ext"
+            echo "$with_ext -> $without_ext"
+        fi
+        return 0
+    fi
+    if [[ -f "$without_ext" ]]; then
+        mv "$without_ext" "$with_ext"
+        echo "$without_ext -> $with_ext"
+        return 0
+    fi
+    echo "file doesn't exist: $1"
+    return 1
+}
+
 # command to check the syslog quickly
 for file in '/var/log/syslog' '/var/log/messages'
 do

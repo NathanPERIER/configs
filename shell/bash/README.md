@@ -63,6 +63,7 @@ The `~/.bash_local` file is intended to set machine-specific variables. It can n
 | `lstar`                           | Like `ls`/`find` in a `.tar`/`.tar.gz`/...                                     |
 | `f <pattern>`                     | Find a file by name in the current directory                                   |
 | `ff <pattern> [filename_pattern]` | Find files containing a given pattern in the current directory                 |
+| `mext <file> <extension>`         | Move extension, appends or removes an extension at the end of a file name (or swaps files if both exist) |
 | `syslog`                          | Read the syslog output                                                         |
 | `here`                            | Open a new terminal in the current location (desktop only)                     |
 | `xo`                              | Open a file/folder with the default program (desktop only)                     |
