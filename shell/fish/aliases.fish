@@ -119,6 +119,9 @@ end
 alias mktgz='tar -czvf'
 alias untgz='tar -xvf'
 
+# ls in a .tar (or .tar.sth)
+alias lstar='tar -tvf'
+
 # quick find by name (in the current directory)
 alias f='find . -name'
 

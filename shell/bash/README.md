@@ -60,6 +60,7 @@ The `~/.bash_local` file is intended to set machine-specific variables. It can n
 | `music-dl`                        | Download musics via `yt-dlp` (only enabled if the program is installed)        |
 | `mktgz`                           | Compress files in a `.tar.gz`                                                  |
 | `untgz`                           | Uncompress a `.tar.gz`                                                         |
+| `lstar`                           | Like `ls`/`find` in a `.tar`/`.tar.gz`/...                                     |
 | `f <pattern>`                     | Find a file by name in the current directory                                   |
 | `ff <pattern> [filename_pattern]` | Find files containing a given pattern in the current directory                 |
 | `syslog`                          | Read the syslog output                                                         |
