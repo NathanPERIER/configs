@@ -28,3 +28,8 @@ nnoremap <silent> <C-Right> gt
 nnoremap <silent> <C-G><Left> gT
 nnoremap <silent> <C-G><Right> gt
 
+nnoremap <silent> <C-M-Up>   :m-2<CR>
+nnoremap <silent> <C-M-Down> :m+1<CR>
+vnoremap <C-M-Up>   :m '<-2<CR>gv=gv
+vnoremap <C-M-Down> :m '>+1<CR>gv=gv
+

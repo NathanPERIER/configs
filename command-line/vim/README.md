@@ -38,4 +38,6 @@
 | `Ctrl+G` `Right`    | Go to next tab                                |
 | `Ctrl+Left`         | Go to previous tab                            |
 | `Ctrl+G` `Left`     | Go to previous tab                            |
+| `Ctrl+Alt+Up`       | Move current line or selection up one line    |
+| `Ctrl+Alt+Down`     | Move current line or selection down one line  |
 

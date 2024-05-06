@@ -4,10 +4,10 @@ syntax on
 
 " set tab length and indentation
 set tabstop=4
-set softtabstop=4
+" set softtabstop=4
 set shiftwidth=4
-set autoindent
 set copyindent
+set autoindent
 set smarttab
 
 " wrap lines and avoid breaking words
