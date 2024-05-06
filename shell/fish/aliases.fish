@@ -107,6 +107,9 @@ function rmd
 	return $res
 end
 
+# word-level diff
+alias wdiff='git diff -U0 --word-diff --no-index --'
+
 # get public ip
 alias ipinfo='curl ipinfo.io/ip'
 

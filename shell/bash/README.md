@@ -56,6 +56,7 @@ The `~/.bash_local` file is intended to set machine-specific variables. It can n
 | `led <path>`                      | `ll` if the target is a directory, `ed` if it is a writable file (or doesn't exist), else `less` |
 | `mkd <path>`                      | Create a directory and `cd` into it                                            |
 | `rmd`                             | Remove the current directory if empty and `cd` to its parent                   |
+| `wdiff`                           | Word-level diff (using `git`)                                                  |
 | `ipinfo`                          | Get the public IP address the machine uses to access the internet              |
 | `music-dl`                        | Download musics via `yt-dlp` (only enabled if the program is installed)        |
 | `mktgz`                           | Compress files in a `.tar.gz`                                                  |
