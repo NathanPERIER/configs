@@ -19,12 +19,13 @@ fi
 
 do_bash=false
 do_fish=false
+do_scripts=false
 do_vim=false
 do_git=false
 while [[ $# -gt 0 ]]; do
 	case "$1" in
-		bash) do_bash=true;;
-		fish) do_fish=true;;
+		bash) do_bash=true; do_scripts=true;;
+		fish) do_fish=true; do_scripts=true;;
 		git)  do_git=true;;
 		vim)  do_vim=true;;
 		*)    usage; exit 1;;
@@ -73,6 +74,20 @@ if [[ "$do_fish" = true ]] || [[ "$do_all" = true ]]; then
 	install_file "${this_dir}/shell/fish/aliases.fish" "${fish_config_dir}/aliases.fish"
 	install_file "${this_dir}/shell/fish/functions/fish_prompt.fish" "${fish_functions_dir}/fish_prompt.fish"
 	install_file "${this_dir}/shell/fish/functions/fish_greeting.fish" "${fish_functions_dir}/fish_greeting.fish"
+fi
+
+
+if [[ "$do_scripts" = true ]] || [[ "$do_all" = true ]]; then
+	echo " ===== Scripts =========================="
+
+	scripts_exec_dir="${HOME}/.local/bin"
+
+	while IFS= read -r script_file; do
+		filename="$(basename "$script_file")"
+		filename="${filename%.*}"
+		install_file "$script_file" "${scripts_exec_dir}/${filename}"
+	done < <(find "${this_dir}/shell/scripts" -executable -type f)
+
 fi
 
 
