@@ -98,13 +98,12 @@ if [[ "$do_git" = true ]] || [[ "$do_all" = true ]]; then
 	git_scripts_dir='.local/share/git'
 	[[ -d ~/"$git_config_dir" ]] || mkdir ~/"$git_config_dir"
 	mkdir -p ~/"$git_scripts_dir"
-	
-	git_config_file="${git_config_dir}/config"
-	install_file "${this_dir}/command-line/git/config" ~/"$git_config_file"
 
+	git_config_file="${git_config_dir}/config"
 	if ! git config --global --get-all include.path | grep '^'"~/$git_config_file"'$' > /dev/null; then
 		git config --global --add include.path "~/$git_config_file"
 	fi
+	install_file "${this_dir}/command-line/git/config" ~/"$git_config_file"
 
 	for file in "${this_dir}/command-line/git/scripts"/*.sh; do
 		install_file "${file}" ~/"$git_scripts_dir/$(basename "$file")"
