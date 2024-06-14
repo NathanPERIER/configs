@@ -22,6 +22,7 @@
     cfg = !vim ~/.config/git/config
     lcfg = !vim ~/.gitconfig
     rcfg = "!vim \"$(git root)/.git/config\""
+    unsafe = "!git -c http.sslVerify=false"
 [color]
     ui = auto
 [core]
