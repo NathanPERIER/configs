@@ -113,7 +113,7 @@ alias wdiff='git diff -U0 --word-diff --no-index --'
 alias ipinfo='curl ipinfo.io/ip'
 
 # download musics
-if which yt-dlp > /dev/null; then
+if which yt-dlp > /dev/null 2>&1; then
 	alias music-dl='yt-dlp --extract-audio --audio-format mp3 --embed-thumbnail'
 fi
 

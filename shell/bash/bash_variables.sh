@@ -2,7 +2,7 @@
 
 if printenv | grep '^WSL_DISTRO_NAME=' > /dev/null; then
 	export MACHINE_TYPE='wsl'
-elif which dpkg > /dev/null && dpkg -s xserver-xorg 2>&1 | grep '^Status:.* installed' > /dev/null; then
+elif which dpkg > /dev/null 2>&1 && dpkg -s xserver-xorg 2>&1 | grep '^Status:.* installed' > /dev/null; then
 	export MACHINE_TYPE='desktop'
 else
 	export MACHINE_TYPE='server'
