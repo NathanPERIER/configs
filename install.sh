@@ -81,6 +81,7 @@ if [[ "$do_scripts" = true ]] || [[ "$do_all" = true ]]; then
 	echo " ===== Scripts =========================="
 
 	scripts_exec_dir="${HOME}/.local/bin"
+	mkdir -p "$scripts_exec_dir"
 
 	while IFS= read -r script_file; do
 		filename="$(basename "$script_file")"
