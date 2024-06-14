@@ -7,6 +7,8 @@ if [ "$colour_support" = yes ]; then
     	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     	alias ls='ls --color=auto'
 	fi
+	
+	alias diff='diff --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
