@@ -205,8 +205,29 @@ if [[ "$MACHINE_TYPE" = 'desktop' ]]; then
 	alias xo='xdg-open'
 fi
 
+# generic build function
+function build {
+    if [[ -f 'build.ninja' ]]; then
+        echo 'Build using ninja'
+        ninja "$@"
+    elif [[ -f 'makefile' ]] || [[ -f 'Makefile' ]]; then
+        echo 'Build using make'
+        make "$@"
+    else
+        echo "No build system found in the current directory"
+        return 1
+    fi
+}
+
 # for when the compilation takes way too much time
 alias mk="make -j $(nproc)"
+alias nj="ninja -j $(nproc)"
+alias bl="build -j $(nproc)"
+
+# quick Meson update
+if which meson > /dev/null 2>&1; then
+    alias msup='meson subprojects update'
+fi
 
 # for when even Ctrl+C won't end a program
 alias solong='pkill -9'
