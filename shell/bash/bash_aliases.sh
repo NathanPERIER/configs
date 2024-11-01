@@ -199,6 +199,28 @@ do
     fi
 done
 
+# get details on a given command
+function what {
+	if [[ $# -ne 1 ]]; then
+		echo "usage: what <command>"
+		return 1
+	fi
+	if [[ "$1" = '-h' ]] || [[ "$1" = '--help' ]]; then
+		echo "usage: what <command>"
+		return 0
+	fi
+	command_name="$1"
+	cmd_type="$(type -t "$command_name")" || return 1
+	case "$cmd_type" in
+		'file')     which "$command_name" 2> /dev/null || return 1;;
+		'alias')    alias "$command_name" || return 1;;
+		'function') declare -f "$command_name" || return 1;;
+		'keyword')  echo "shell keyword";;
+		'builtin')  echo "shell builtin";;
+		*)          return 1;;
+	esac
+}
+
 # open a new terminal or a file explorer (native desktop only)
 if [[ "$MACHINE_TYPE" = 'desktop' ]]; then
 	alias here='gnome-terminal'
