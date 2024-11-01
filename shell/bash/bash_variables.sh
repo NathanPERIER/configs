@@ -17,6 +17,8 @@ elif printenv | grep '^TERM_PROGRAM=vscode$' > /dev/null; then
 	export TERMINAL_TYPE='vscode'
 elif printenv | grep '^TERM_PROGRAM=tmux$' > /dev/null; then
 	export TERMINAL_TYPE='tmux'
+elif printenv | grep '^TERM=screen$' > /dev/null; then
+	export TERMINAL_TYPE='tmux'
 elif printenv | grep '^TERM=xterm' > /dev/null; then
 	export TERMINAL_TYPE='xterm'
 elif printenv | grep '^TERM=rxvt' > /dev/null; then
@@ -36,6 +38,16 @@ colour_support=no
 case "$TERM" in
     xterm-color|*-256color) colour_support=yes;;
 esac
+
+if [[ "$TERMINAL_TYPE" = 'tmux' ]]; then
+	# Since we can't get any real information inside tmux,
+	# we assume colour is supported unless we are in the console of a server without SSH
+	if [[ "$MACHINE_TYPE" = 'desktop' ]] || [[ -n "$SSH_CONNECTION" ]]; then
+		colour_support=yes;
+	else
+		colour_support=no;
+	fi
+fi
 
 
 
