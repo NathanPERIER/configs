@@ -45,8 +45,17 @@ if [[ -n "$prompt_shorten_path" ]]; then
 	unset prompt_shorten_path
 fi
 
-
-if [[ "$colour_support" = yes ]]; then
+if [[ -n "$starship_theme" ]] && which starship 1>&2 > /dev/null; then
+	starship_conf_dir="$HOME/.config/starship"
+	if [[ "$starship_theme" = 'local' ]]; then
+		: # previously set in `.bash_local` and must not be changed
+	elif [[ -f "${HOME}/.config/starship/${starship_theme}.toml" ]]; then
+		export STARSHIP_CONFIG="${HOME}/.config/starship/${starship_theme}.toml"
+	else
+		unset STARSHIP_CONFIG
+	fi
+	eval "$(starship init bash)"
+elif [[ "$colour_support" = yes ]]; then
 	if [[ "$colour_prompt_style" = 'local' ]]; then
 		: # previously set in `.bash_local` and must not be changed
 	elif [[ "$colour_prompt_style" = 'multiline' ]]; then
@@ -69,6 +78,7 @@ else
 fi
 
 # cleanup utilitary variables
+unset starship_theme
 unset colour_prompt_style
 unset prompt_style
 unset user_colour_code

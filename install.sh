@@ -1,7 +1,7 @@
 #!/bin/bash
 
 usage() {
-	echo "usage: $0 [<bash|vim|git>...]"
+	echo "usage: $0 [<bash|fish|vim|git>...]"
 }
 
 
@@ -20,11 +20,12 @@ fi
 do_bash=false
 do_fish=false
 do_scripts=false
+do_prompts=false
 do_vim=false
 do_git=false
 while [[ $# -gt 0 ]]; do
 	case "$1" in
-		bash) do_bash=true; do_scripts=true;;
+		bash) do_bash=true; do_scripts=true; do_prompts=true;;
 		fish) do_fish=true; do_scripts=true;;
 		git)  do_git=true;;
 		vim)  do_vim=true;;
@@ -88,6 +89,20 @@ if [[ "$do_scripts" = true ]] || [[ "$do_all" = true ]]; then
 		filename="${filename%.*}"
 		install_file "$script_file" "${scripts_exec_dir}/${filename}"
 	done < <(find "${this_dir}/shell/scripts" -executable -type f)
+
+fi
+
+
+if [[ "$do_prompts" = true ]] || [[ "$do_all" = true ]]; then
+	echo " ===== Prompts =========================="
+
+	starship_conf_dir="${HOME}/.config/starship"
+	mkdir -p "$starship_conf_dir"
+
+	while IFS= read -r prompt_file; do
+		filename="$(basename "$prompt_file")"
+		install_file "$prompt_file" "${starship_conf_dir}/${filename}"
+	done < <(find "${this_dir}/terminal/starship" -type f -name '*.toml')
 
 fi
 
