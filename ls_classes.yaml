@@ -1,6 +1,6 @@
 archives:
   description: 'Archives or compressed files'
-  default: '01;31'
+  default: 'bold fg:red'
   extensions:
     - 'tar'
     - 'tgz'
@@ -51,7 +51,7 @@ archives:
 
 images:
   description: 'Images and video'
-  default: '01;35'
+  default: 'bold fg:magenta'
   extensions:
     - 'avif'
     - 'jpg'
@@ -108,7 +108,7 @@ images:
 
 audio:
   description: 'Audio'
-  default: '00;36'
+  default: 'fg:cyan'
   extensions:
     - 'aac'
     - 'au'
@@ -130,7 +130,7 @@ audio:
 
 temporary:
   description: 'Temporary and backup files'
-  default: '00;90'
+  default: 'fg:bright-black'
   patterns:
     - '*~'
     - '*#'

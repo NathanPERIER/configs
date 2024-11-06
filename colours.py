@@ -113,7 +113,7 @@ ls_types_names = {
     'capability':            'ca',
     'sticky_other_writable': 'tw',
     'other_writable':        'ow',
-    'sticky':                'wt',
+    'sticky':                'st',
     'executable':            'ex'
 }
 
