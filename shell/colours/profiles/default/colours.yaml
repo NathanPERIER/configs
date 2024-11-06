@@ -1,52 +1,52 @@
 
 ls_colours:
   types:
-    # normal:              '00'       # Default
-    # file:                '00'       # Normal file
-    reset:                 '0'        # Reset
-    directory:             '01;34'    # Directory
-    multi_hard_link:       '00'       # Regular file with more than one hard link
-    sym_link:              '01;36'    # Symbolic link (use 'target' for the colour of the targeted file)
-    orphan:                '40;31;01' # Symbolic link to a missing file
-    missing:               '00'       # Missing file to which a symbolic link is pointing
-    fifo:                  '40;33'    # Pipe/FIFO
-    socket:                '01;35'    # Socket
-    door:                  '01;35'    # Door
-    block_device:          '40;33;01' # Block device driver
-    char_device:           '40;33;01' # Character device driver
-    setuid:                '37;41'    # File that is setuid (u+s)
-    setgid:                '30;43'    # File that is setgid (g+s)
-    capability:            '00'       # File with capability (expensive to lookup)
-    sticky_other_writable: '30;42'    # Directory that is sticky and other-writable (+t,+o-w)
-    other_writable:        '34;42'    # Directory that is other-writable (+o-w) but not sticky
-    sticky:                '37;44'    # Directory with the sticky bit set (+t) but not other-writable
-    executable:            '01;32'    # Executable files
+    # normal:              'clear'                   # Default
+    # file:                'clear'                   # Normal file
+    reset:                 'clear'                   # Reset
+    directory:             'bold fg:blue'            # Directory
+    multi_hard_link:       'clear'                   # Regular file with more than one hard link
+    sym_link:              'bold fg:cyan'            # Symbolic link (use 'target' for the colour of the targeted file)
+    orphan:                'bold fg:red bg:black'    # Symbolic link to a missing file
+    missing:               'clear'                   # Missing file to which a symbolic link is pointing
+    fifo:                  'fg:yellow bg:black'      # Pipe/FIFO
+    socket:                'bold fg:magenta'         # Socket
+    door:                  'bold fg:magenta'         # Door
+    block_device:          'bold fg:yellow bg:black' # Block device driver
+    char_device:           'bold fg:yellow bg:black' # Character device driver
+    setuid:                'fg:white bg:red'         # File that is setuid (u+s)
+    setgid:                'fg:black bg:yellow'      # File that is setgid (g+s)
+    capability:            'clear'                   # File with capability (expensive to lookup)
+    sticky_other_writable: 'fg:black bg:green'       # Directory that is sticky and other-writable (+t,+o-w)
+    other_writable:        'fg:blue  bg:green'       # Directory that is other-writable (+o-w) but not sticky
+    sticky:                'fg:white bg:blue'        # Directory with the sticky bit set (+t) but not other-writable
+    executable:            'bold fg:green'           # Executable files
 
   classes:
-    archives:  '01;31'
-    images:    '01;35'
-    audio:     '00;36'
-    temporary: '00;90'
+    archives:  'bold fg:red'
+    images:    'bold fg:magenta'
+    audio:     'fg:cyan'
+    temporary: 'fg:bright-black'
 
 gcc_colours:
-  error:         '01;31'
-  warning:       '01;35'
-  note:          '01;36'
-  path:          '01;36'
-  range1:        '32'
-  range2:        '34'
-  locus:         '01'
-  quote:         '01'
-  fnname:        '01;32'
-  targs:         '35'
-  fixit-insert:  '32'
-  fixit-delete:  '31'
-  diff-filename: '01'
-  diff-hunk:     '32'
-  diff-delete:   '31'
-  diff-insert:   '32'
-  type-diff:     '01;32'
-  valid:         '01;32'
-  invalid:       '01;31'
-  highlight-a:   '01;32'
-  highlight-b:   '01;34'
+  error:         'bold fg:red'
+  warning:       'bold fg:magenta'
+  note:          'bold fg:cyan'
+  path:          'bold fg:cyan'
+  range1:        'fg:green'
+  range2:        'fg:blue'
+  locus:         'bold'
+  quote:         'bold'
+  fnname:        'bold fg:green'
+  targs:         'fg:magenta'
+  fixit-insert:  'fg:green'
+  fixit-delete:  'fg:red'
+  diff-filename: 'bold'
+  diff-hunk:     'fg:green'
+  diff-delete:   'fg:red'
+  diff-insert:   'fg:green'
+  type-diff:     'bold fg:green'
+  valid:         'bold fg:green'
+  invalid:       'bold fg:red'
+  highlight-a:   'bold fg:green'
+  highlight-b:   'bold fg:blue'
