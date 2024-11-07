@@ -212,7 +212,9 @@ function what {
 	command_name="$1"
 	cmd_type="$(type -t "$command_name")" || return 1
 	case "$cmd_type" in
-		'file')     which "$command_name" 2> /dev/null || return 1;;
+		'file')
+			filepath="$(which "$command_name" 2> /dev/null)" || return 1
+			ll "$filepath" || return 1;;
 		'alias')    alias "$command_name" || return 1;;
 		'function') declare -f "$command_name" || return 1;;
 		'keyword')  echo "shell keyword";;
