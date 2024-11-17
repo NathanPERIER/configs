@@ -4,7 +4,7 @@ ls_colours:
     # normal:              'clear'                   # Default
     # file:                'clear'                   # Normal file
     reset:                 'clear'                   # Reset
-    directory:             'bold fg:green'           # Directory
+    directory:             'bold fg:blue'            # Directory
     multi_hard_link:       'clear'                   # Regular file with more than one hard link
     sym_link:              'bold fg:cyan'            # Symbolic link (use 'target' for the colour of the targeted file)
     orphan:                'bold fg:red bg:black'    # Symbolic link to a missing file
