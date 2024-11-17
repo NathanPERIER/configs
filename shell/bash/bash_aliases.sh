@@ -2,12 +2,33 @@
 
 # colour various commands by default
 if [ "$colour_support" = yes ]; then
-    # enable color support of ls
-    if [ -x /usr/bin/dircolors ]; then
-    	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    	alias ls='ls --color=auto'
+	# Apply custom colours
+	if [[ -n "$custom_colour_profile" ]]; then
+		colours_dir="${HOME}/.config/custom_colours"
+		profile_dir="${colours_dir}/profiles/${custom_colour_profile}"
+		# echo "profile_dir=${profile_dir}"
+		if [[ -d "$profile_dir" ]] && [[ -e "${colours_dir}/colour_variables.py" ]]; then
+			eval "$("${colours_dir}/colour_variables.py" "${profile_dir}/ls_classes.yaml" "${profile_dir}/colours.yaml")"
+		fi
+		if [[ "$ls_colors_ok" = 'true' ]]; then
+			export LS_COLORS
+		fi
+		if [[ "$gcc_colors_ok" = 'true' ]]; then
+			export GCC_COLORS
+		fi
+		unset gcc_colors_ok
+		unset profile_dir
+		unset colours_dir
+		unset custom_colour_profile
 	fi
-	
+
+	if [[ "$ls_colors_ok" != 'true' ]] && which dircolors 2>&1 > /dev/null; then
+    	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+	fi
+	unset ls_colors_ok
+
+	alias ls='ls --color=auto'
+
 	alias diff='diff --color=auto'
 
     alias grep='grep --color=auto'

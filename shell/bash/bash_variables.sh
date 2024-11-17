@@ -34,6 +34,9 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+
+custom_colour_profile=default
+
 colour_support=no
 case "$TERM" in
     xterm-color|*-256color) colour_support=yes;;
@@ -48,11 +51,4 @@ if [[ "$TERMINAL_TYPE" = 'tmux' ]]; then
 		colour_support=no;
 	fi
 fi
-
-
-
-# coloured GCC warnings and errors
-# if [ "$colour_support" = yes ]; then
-#      export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-# fi
 

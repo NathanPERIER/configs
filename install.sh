@@ -21,12 +21,13 @@ do_bash=false
 do_fish=false
 do_scripts=false
 do_prompts=false
+do_colours=false
 do_vim=false
 do_git=false
 while [[ $# -gt 0 ]]; do
 	case "$1" in
-		bash) do_bash=true; do_scripts=true; do_prompts=true;;
-		fish) do_fish=true; do_scripts=true;;
+		bash) do_bash=true; do_scripts=true; do_colours=true; do_prompts=true;;
+		fish) do_fish=true; do_scripts=true; do_colours=true;;
 		git)  do_git=true;;
 		vim)  do_vim=true;;
 		*)    usage; exit 1;;
@@ -103,6 +104,27 @@ if [[ "$do_prompts" = true ]] || [[ "$do_all" = true ]]; then
 		filename="$(basename "$prompt_file")"
 		install_file "$prompt_file" "${starship_conf_dir}/${filename}"
 	done < <(find "${this_dir}/terminal/starship" -type f -name '*.toml')
+
+fi
+
+
+if [[ "$do_colours" = true ]] || [[ "$do_all" = true ]]; then
+	echo " ===== Colours =========================="
+
+	colours_conf_dir="${HOME}/.config/custom_colours"
+	profiles_conf_dir="${colours_conf_dir}/profiles"
+	mkdir -p "$profiles_conf_dir"
+
+	install_file "${this_dir}/shell/colours/colour_variables.py" "${colours_conf_dir}/colour_variables.py"
+	while IFS= read -r profile_dir; do
+		profile_name="$(basename "$profile_dir")"
+		if [[ -f "${profile_dir}/ls_classes.yaml" ]] && [[ -f "${profile_dir}/colours.yaml" ]]; then
+			out_profile_dir="${profiles_conf_dir}/${profile_name}"
+			mkdir -p "${out_profile_dir}"
+			install_file "${profile_dir}/ls_classes.yaml" "${out_profile_dir}/ls_classes.yaml"
+			install_file "${profile_dir}/colours.yaml" "${out_profile_dir}/colours.yaml"
+		fi
+	done < <(find "${this_dir}/shell/colours" -type d)
 
 fi
 
