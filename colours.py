@@ -15,24 +15,34 @@ def help():
 col_reg = re.compile(r'(clear|bold|dim|italic|underline|strikethrough)|([fb]g:)?(?:((?:bright-)?(?:black|red|green|yellow|blue|magenta|cyan|white|default)|dark-grey)|#([0-9a-fA-F]{6})|([0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5]))')
 raw_code_reg = re.compile(r'[0-9]+(?:;[0-9]+)*')
 
+modifier_codes = {
+    'clear':         0,
+    'bold':          1,
+    'dim':           2,
+    'italic':        3,
+    'underline':     4,
+    'strikethrough': 9
+}
+
+# Index in a list would be more efficient... if not for the ValueError
+basic_colour_codes = {
+    'black':   0,
+    'red':     1,
+    'green':   2,
+    'yellow':  3,
+    'blue':    4,
+    'magenta': 5,
+    'cyan':    6,
+    'white':   7
+}
+
 def convert_colour_component(name: str) -> str :
     m = col_reg.fullmatch(name)
     if m is None :
         return ''
     if m.group(1) is not None :
-        match m.group(1) :
-            case 'clear':
-                return '0'
-            case 'bold':
-                return '1'
-            case 'dim':
-                return '2'
-            case 'italic':
-                return '3'
-            case 'underline':
-                return '4'
-            case 'strikethrough':
-                return '9'
+        if m.group(1) in modifier_codes :
+            return str(modifier_codes[m.group(1)])
         return ''
     # background
     background_val = 0
@@ -58,23 +68,8 @@ def convert_colour_component(name: str) -> str :
         col_name = col_name[7:]
         bright_val = 60
     col_val = 9
-    match col_name :
-        case 'black':
-            col_val = 0
-        case 'red':
-            col_val = 1
-        case 'green':
-            col_val = 2
-        case 'yellow':
-            col_val = 3
-        case 'blue':
-            col_val = 4
-        case 'magenta':
-            col_val = 5
-        case 'cyan':
-            col_val = 6
-        case 'white':
-            col_val = 7
+    if col_name in basic_colour_codes :
+        col_val = basic_colour_codes[col_name]
     return f"{30 + background_val + bright_val + col_val}"
 
 
@@ -118,14 +113,14 @@ ls_types_names = {
 }
 
 
-def print_gcc_var(gcc_colours: dict[str, str]):
+def print_gcc_var(gcc_colours: "dict[str, str]"):
     res: list[str] = []
     for elt, col_repr in gcc_colours.items() :
         col_code = convert_colour(col_repr)
         if len(col_code) > 0 :
             res.append(f"{elt}={col_code}")
     if len(res) > 0 :
-        print(f"export GCC_COLORS='{':'.join(res)}'")
+        print(f"GCC_COLORS='{':'.join(res)}'")
         print('gcc_colors_ok=true')
 
 def print_ls_var(classes, colours) :
@@ -155,7 +150,7 @@ def print_ls_var(classes, colours) :
     for col_code, patterns in ls_classes.values() :
         for p in patterns :
             res.append(f"{p}={col_code}")
-    print(f"export LS_COLORS='{':'.join(res)}'")
+    print(f"LS_COLORS='{':'.join(res)}'")
     print('ls_colors_ok=true')
     
 
