@@ -35,6 +35,9 @@ alias xx='clear'
 alias python='python3'
 alias pip='pip3'
 
+# call to pip in venv
+alias vpip='vpython -m pip'
+
 # you do not want to ask
 alias eclp='rm -f ~/.eclipse_history; rlwrap eclipse'
 
