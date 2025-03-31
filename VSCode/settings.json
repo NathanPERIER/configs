@@ -1,4 +1,12 @@
 {
-    "editor.fontFamily": "Fira Code",
+    "chat.commandCenter.enabled": false,
+    "cmake.automaticReconfigure": false,
+    "cmake.configureOnEdit": false,
+    "cmake.configureOnOpen": false,
+    "C_Cpp.copilotHover": "disabled",
+    "C_Cpp.default.cppStandard": "c++23",
+    "C_Cpp.inlayHints.autoDeclarationTypes.enabled": true,
+    "C_Cpp.vcFormat.indent.namespaceContents": false,
+    "editor.fontFamily": "'FiraCode Nerd Font Mono', 'Fira Code', monospace",
     "editor.fontLigatures": "'cv06', 'cv14', 'ss03', 'cv30', 'cv21', 'ss07'"
 }
