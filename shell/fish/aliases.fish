@@ -36,6 +36,9 @@ alias unset='set --erase'
 alias python='python3'
 alias pip='pip3'
 
+# call to pip in venv
+alias vpip='vpython -m pip'
+
 # you do not want to ask
 alias eclp='rm -f ~/.eclipse_history; rlwrap eclipse'
 
@@ -162,6 +165,31 @@ for file in '/var/log/syslog' '/var/log/messages'
     end
 end
 
+# get details on a given command
+function what
+    if test (count $argv) -ne 1
+        echo "usage: what <command>"
+        return 1
+    end
+    if test $argv[1] = '-h' || test $argv[1] = '--help'
+        echo "usage: what <command>"
+        return 0
+    end
+    set command_name $argv[1]
+    set cmd_type (type -t "$command_name") || return 1
+    switch "$cmd_type"
+        case 'file'
+            set filepath (which "$command_name" 2> /dev/null) || return 1
+            ll "$filepath" || return 1
+        case 'function'
+            functions "$command_name" || return 1
+        case 'builtin'
+            echo "shell builtin"
+        case '*'
+            return 1
+    end
+end
+
 # open a new terminal or a file explorer (native desktop only)
 if test "$MACHINE_TYPE" = 'desktop'
 	alias here='gnome-terminal'
@@ -169,7 +197,13 @@ if test "$MACHINE_TYPE" = 'desktop'
 end
 
 # for when the compilation takes way too much time
-alias mk="make -j (nproc)"
+alias mk="make -j $(nproc)"
+alias nj="ninja -j $(nproc)"
+
+# quick Meson update
+if which meson > /dev/null
+    alias msup='meson subprojects update'
+end
 
 # for when even Ctrl+C won't end a program
 alias solong='pkill -9'
