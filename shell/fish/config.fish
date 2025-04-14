@@ -4,6 +4,9 @@ if not contains ~/.local/bin $PATH
 	set PATH $PATH ~/.local/bin
 end
 
+if not contains /usr/sbin $PATH
+	set PATH /usr/sbin $PATH
+end
 
 
 if test -f ~/.config/fish/variables.fish
