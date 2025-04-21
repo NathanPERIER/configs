@@ -8,8 +8,7 @@ import yaml
 
 
 def help():
-    # TODO [bash|fish]
-    print(f"usage: {sys.argv[0]} <classes> <colours>")
+    print(f"usage: {sys.argv[0]} <bash|fish> <classes> <colours>")
 
 
 col_reg = re.compile(r'(clear|bold|dim|italic|underline|strikethrough)|([fb]g:)?(?:((?:bright-)?(?:black|red|green|yellow|blue|magenta|cyan|white|default)|dark-grey)|#([0-9a-fA-F]{6})|([0-1]?[0-9]{1,2}|2[0-4][0-9]|25[0-5]))')
@@ -89,6 +88,25 @@ def load_yaml(path: str):
         return yaml.safe_load(f)
 
 
+class BashShell:
+    def set_variable(self, name: str, value: str) -> str :
+        return f"{name}='{value}'"
+    def export_variable(self, name: str, value: str) -> str :
+        return f"export {name}='{value}'"
+
+class FishShell:
+    def set_variable(self, name: str, value: str) -> str :
+        return f"set {name} '{value}'"
+    def export_variable(self, name: str, value: str) -> str :
+        return f"set -x {name} '{value}'"
+
+def get_shell(name: str):
+    if name in ['bash', 'sh'] :
+        return BashShell()
+    if name == 'fish' :
+        return FishShell()
+    raise ValueError(f"Bad shell type: {name}")
+
 ls_types_names = {
     'normal':                'no',
     'file':                  'fi',
@@ -113,17 +131,17 @@ ls_types_names = {
 }
 
 
-def print_gcc_var(gcc_colours: "dict[str, str]"):
+def print_gcc_var(gcc_colours: "dict[str, str]", shell):
     res: list[str] = []
     for elt, col_repr in gcc_colours.items() :
         col_code = convert_colour(col_repr)
         if len(col_code) > 0 :
             res.append(f"{elt}={col_code}")
     if len(res) > 0 :
-        print(f"GCC_COLORS='{':'.join(res)}'")
-        print('gcc_colors_ok=true')
+        print(shell.export_variable('GCC_COLORS', ':'.join(res)))
+        print(shell.set_variable('gcc_colors_ok', 'true'))
 
-def print_ls_var(classes, colours) :
+def print_ls_var(classes, colours, shell) :
     ls_classes = {}
     for cls_id, cls in classes.items() :
         patterns = []
@@ -150,15 +168,14 @@ def print_ls_var(classes, colours) :
     for col_code, patterns in ls_classes.values() :
         for p in patterns :
             res.append(f"{p}={col_code}")
-    print(f"LS_COLORS='{':'.join(res)}'")
-    print('ls_colors_ok=true')
-    
+    print(shell.export_variable('LS_COLORS', ':'.join(res)))
+    print(shell.set_variable('ls_colors_ok', 'true'))
 
-def print_vars(classes, colours) :
+def print_vars(classes, colours, shell) :
     if 'gcc_colours' in colours :
-        print_gcc_var(colours['gcc_colours'])
+        print_gcc_var(colours['gcc_colours'], shell)
     if 'ls_colours' in colours :
-        print_ls_var(classes, colours['ls_colours'])
+        print_ls_var(classes, colours['ls_colours'], shell)
 
 
 
@@ -168,13 +185,14 @@ def main():
         help()
         sys.exit(0)
     
-    if len(sys.argv) != 3 :
+    if len(sys.argv) != 4 :
         sys.exit(1)
 
     try:
-        classes = load_yaml(sys.argv[1])
-        colours = load_yaml(sys.argv[2])
-        print_vars(classes, colours)
+        shell = get_shell(sys.argv[1])
+        classes = load_yaml(sys.argv[2])
+        colours = load_yaml(sys.argv[3])
+        print_vars(classes, colours, shell)
         # code = convert_colour(sys.argv[1])
         # if len(code) > 0 :
         #     print(code)
