@@ -28,6 +28,8 @@ else
 end
 
 
+set custom_colour_profile default
+
 switch $TERM
 	case 'xterm-color' '*-256color'
 		set colour_support yes

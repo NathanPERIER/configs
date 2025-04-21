@@ -111,18 +111,23 @@ fi
 if [[ "$do_colours" = true ]] || [[ "$do_all" = true ]]; then
 	echo " ===== Colours =========================="
 
+	colours_script="${this_dir}/shell/colours/colour_variables.py"
 	colours_conf_dir="${HOME}/.config/custom_colours"
-	profiles_conf_dir="${colours_conf_dir}/profiles"
-	mkdir -p "$profiles_conf_dir"
+	mkdir -p "$colours_conf_dir"
 
-	install_file "${this_dir}/shell/colours/colour_variables.py" "${colours_conf_dir}/colour_variables.py"
+	generate_colour_profile() { # generate_colour_profile <classes> <colours> <out_file>
+		echo "GENERATE ${3}.sh"
+		"${colours_script}" bash "$1" "$2" > "${3}.sh"
+		echo "GENERATE ${3}.fish"
+		"${colours_script}" fish "$1" "$2" > "${3}.fish"
+	}
+
 	while IFS= read -r profile_dir; do
 		profile_name="$(basename "$profile_dir")"
-		if [[ -f "${profile_dir}/ls_classes.yaml" ]] && [[ -f "${profile_dir}/colours.yaml" ]]; then
-			out_profile_dir="${profiles_conf_dir}/${profile_name}"
-			mkdir -p "${out_profile_dir}"
-			install_file "${profile_dir}/ls_classes.yaml" "${out_profile_dir}/ls_classes.yaml"
-			install_file "${profile_dir}/colours.yaml" "${out_profile_dir}/colours.yaml"
+		classes_file="${profile_dir}/ls_classes.yaml"
+		colours_file="${profile_dir}/colours.yaml"
+		if [[ -f "$classes_file" ]] && [[ -f "$colours_file" ]]; then
+			generate_colour_profile "$classes_file" "$colours_file" "${colours_conf_dir}/${profile_name}"
 		fi
 	done < <(find "${this_dir}/shell/colours" -type d)
 

@@ -2,11 +2,15 @@
 
 # colour various commands by default
 if test "$colour_support" = yes
-    # enable color support of ls
-    # if test -x /usr/bin/dircolors
-    # 	test -r ~/.dircolors && eval (dircolors -b ~/.dircolors) || eval (dircolors -b)
-    # 	alias ls='ls --color=auto'
-	# end
+    if test -n $custom_colour_profile
+        set -l colour_profile "$HOME/.config/custom_colours/$custom_colour_profile.fish"
+        if test -f $colour_profile
+            . $colour_profile
+        end
+        unset ls_colors_ok
+        unset gcc_colors_ok
+        unset custom_colour_profile
+    end
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'

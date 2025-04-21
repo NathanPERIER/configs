@@ -4,21 +4,12 @@
 if [ "$colour_support" = yes ]; then
 	# Apply custom colours
 	if [[ -n "$custom_colour_profile" ]]; then
-		colours_dir="${HOME}/.config/custom_colours"
-		profile_dir="${colours_dir}/profiles/${custom_colour_profile}"
-		# echo "profile_dir=${profile_dir}"
-		if [[ -d "$profile_dir" ]] && [[ -e "${colours_dir}/colour_variables.py" ]]; then
-			eval "$("${colours_dir}/colour_variables.py" "${profile_dir}/ls_classes.yaml" "${profile_dir}/colours.yaml")"
-		fi
-		if [[ "$ls_colors_ok" = 'true' ]]; then
-			export LS_COLORS
-		fi
-		if [[ "$gcc_colors_ok" = 'true' ]]; then
-			export GCC_COLORS
+		colour_profile="${HOME}/.config/custom_colours/${custom_colour_profile}.sh"
+		if [[ -f "$colour_profile" ]]; then
+			. "$colour_profile"
 		fi
 		unset gcc_colors_ok
-		unset profile_dir
-		unset colours_dir
+		unset colour_profile
 		unset custom_colour_profile
 	fi
 
