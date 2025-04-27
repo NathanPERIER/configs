@@ -1,5 +1,8 @@
 {
+    "chat.agent.enabled": false,
     "chat.commandCenter.enabled": false,
+    "chat.extensionTools.enabled": false,
+    "chat.focusWindowOnConfirmation": false,
     "cmake.automaticReconfigure": false,
     "cmake.configureOnEdit": false,
     "cmake.configureOnOpen": false,
@@ -8,5 +11,8 @@
     "C_Cpp.inlayHints.autoDeclarationTypes.enabled": true,
     "C_Cpp.vcFormat.indent.namespaceContents": false,
     "editor.fontFamily": "'FiraCode Nerd Font Mono', 'Fira Code', monospace",
-    "editor.fontLigatures": "'cv06', 'cv14', 'ss03', 'cv30', 'cv21', 'ss07'"
+    "editor.fontLigatures": "'cv06', 'cv14', 'ss03', 'cv30', 'cv21', 'ss07'",
+    "remote.SSH.experimental.chat": false,
+    "telemetry.feedback.enabled": false,
+    "telemetry.telemetryLevel": "off"
 }
