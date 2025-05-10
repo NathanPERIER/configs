@@ -7,9 +7,9 @@ if test "$colour_support" = yes
         if test -f $colour_profile
             . $colour_profile
         end
-        unset ls_colors_ok
-        unset gcc_colors_ok
-        unset custom_colour_profile
+        set -e ls_colors_ok
+        set -e gcc_colors_ok
+        set -e custom_colour_profile
     end
 
     alias grep='grep --color=auto'
