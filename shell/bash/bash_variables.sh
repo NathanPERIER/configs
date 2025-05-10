@@ -2,10 +2,12 @@
 
 if printenv | grep '^WSL_DISTRO_NAME=' > /dev/null; then
 	export MACHINE_TYPE='wsl'
-elif [[ "$XDG_SESSION_TYPE" = 'tty' ]] || [[ -z "$XDG_SESSION_TYPE" ]]; then
+elif [[ "$XDG_SESSION_TYPE" = 'tty' ]]; then
 	export MACHINE_TYPE='server'
-else
+elif [[ -n "$XDG_SESSION_TYPE" ]] || [[ -n "$XDG_CURRENT_DESKTOP" ]] || which xdg-desktop-menu > /dev/null 2>&1; then
 	export MACHINE_TYPE='desktop'
+else
+	export MACHINE_TYPE='server'
 fi
 
 
