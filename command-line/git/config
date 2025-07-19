@@ -10,6 +10,7 @@
     rclone = "!git clone --recurse-submodules -j$(nproc)"
     sup = submodule update --recursive --init
     recurse = !~/.local/share/git/git-recurse.sh
+    detach = switch --detach
     staged = diff --cached
     unstage = reset -q HEAD --
     sweep = clean -Xdf  # Removes all ignored files
