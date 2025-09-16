@@ -165,6 +165,12 @@ if [[ "$do_vim" = true ]] || [[ "$do_all" = true ]]; then
 	install_file "${this_dir}/command-line/vim/commands.vim" "${vim_config_dir}/commands.vim"
 	install_file "${this_dir}/command-line/vim/mappings.vim" "${vim_config_dir}/mappings.vim"
 	install_file "${this_dir}/command-line/vim/filetypes.vim" "${vim_config_dir}/filetypes.vim"
+
+	vim_filetypes_dir="${vim_config_dir}/ftplugin"
+	[[ -d "$vim_filetypes_dir" ]] || mkdir "$vim_filetypes_dir"
+	for file in "${this_dir}/command-line/vim/ftplugin"/*.vim; do
+		install_file "${file}" "${vim_filetypes_dir}/$(basename "$file")"
+	done
 fi
 
 
