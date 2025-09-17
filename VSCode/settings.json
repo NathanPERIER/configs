@@ -1,8 +1,25 @@
 {
+    "accessibility.verbosity.inlineChat": false,
     "chat.agent.enabled": false,
     "chat.commandCenter.enabled": false,
+    "chat.detectParticipant.enabled": false,
+    "chat.disableAIFeatures": true,
+    "chat.edits2.enabled": false,
     "chat.extensionTools.enabled": false,
-    "chat.focusWindowOnConfirmation": false,
+    "chat.implicitContext.enabled": {
+        "panel": "never"
+    },
+    "chat.mcp.access": "none",
+    "chat.mcp.discovery.enabled": {
+        "claude-desktop": false,
+        "windsurf": false,
+        "cursor-global": false,
+        "cursor-workspace": false
+    },
+    "chat.promptFiles": false,
+    "chat.sendElementsToChat.enabled": false,
+    "chat.sendElementsToChat.attachImages": false,
+    "chat.sendElementsToChat.attachCSS": false,
     "cmake.automaticReconfigure": false,
     "cmake.configureOnEdit": false,
     "cmake.configureOnOpen": false,
@@ -12,7 +29,11 @@
     "C_Cpp.vcFormat.indent.namespaceContents": false,
     "editor.fontFamily": "'FiraCode Nerd Font Mono', 'Fira Code', monospace",
     "editor.fontLigatures": "'cv06', 'cv14', 'ss03', 'cv30', 'cv21', 'ss07'",
+    "notebook.experimental.generate": false,
     "remote.SSH.experimental.chat": false,
     "telemetry.feedback.enabled": false,
-    "telemetry.telemetryLevel": "off"
+    "telemetry.telemetryLevel": "off",
+    "workbench.commandPalette.experimental.enableNaturalLanguageSearch": false,
+    "workbench.editor.empty.hint": "hidden",
+    "workbench.settings.enableNaturalLanguageSearch": false
 }
