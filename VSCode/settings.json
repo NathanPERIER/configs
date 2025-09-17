@@ -29,10 +29,14 @@
     "C_Cpp.vcFormat.indent.namespaceContents": false,
     "editor.fontFamily": "'FiraCode Nerd Font Mono', 'Fira Code', monospace",
     "editor.fontLigatures": "'cv06', 'cv14', 'ss03', 'cv30', 'cv21', 'ss07'",
+    "files.exclude": {
+        "*.swp": true
+    },
     "notebook.experimental.generate": false,
     "remote.SSH.experimental.chat": false,
     "telemetry.feedback.enabled": false,
     "telemetry.telemetryLevel": "off",
+    "terminal.integrated.fontLigatures.enabled": true,
     "workbench.commandPalette.experimental.enableNaturalLanguageSearch": false,
     "workbench.editor.empty.hint": "hidden",
     "workbench.settings.enableNaturalLanguageSearch": false
