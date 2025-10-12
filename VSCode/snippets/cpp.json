@@ -1,0 +1,29 @@
+{
+	"Namespace": {
+		"description": "Create namespace",
+		"prefix": "namespace",
+		"body": [
+			"namespace ${1:nsp} {",
+			"",
+			"${2:// code}",
+			"",
+			"} // namespace ${1}"
+		]
+	},
+	"Disable copy": {
+		"description": "Disable the copy constructor and copy assignment operator for a given class",
+		"prefix": "copy",
+		"body": [
+			"${1:class}(const ${1:class}&) = delete;",
+			"${1:class}& operator=(const ${1:class}&) = delete;"
+		]
+	},
+	"Disable move": {
+		"description": "Disable the move constructor and move assignment operator for a given class",
+		"prefix": "move",
+		"body": [
+			"${1:class}(${1:class}&&) = delete;",
+			"${1:class}& operator=(${1:class}&&) = delete;"
+		]
+	}
+}

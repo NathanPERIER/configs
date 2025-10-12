@@ -34,3 +34,15 @@ Location: `${config_dir}/User/keybindings.json`
 | `Alt+D`          | Delete selected line(s)      |
 | `Ctrl+O`         | Quick open                   |
 | `Ctrl+P`         | File picker                  |
+
+## Snippets
+
+Location: `${config_dir}/User/snippets/<language>.json`
+
+### C++ (as `cpp`)
+
+| Snippet     | Content                                           |
+|-------------|---------------------------------------------------|
+| `namespace` | Basic namespace declaration with trailing comment |
+| `copy`      | Disabled copy constructor and assignment operator |
+| `move`      | Disabled move constructor and assignment operator |
