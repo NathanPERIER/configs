@@ -1,5 +1,6 @@
 [alias]
     st = status -sb
+    cp = cherry-pick
     ll = log --graph --decorate --pretty=oneline --abbrev-commit
     lg = log --graph --color --pretty=format:'%C(cyan bold)%h%Creset - %C(blue)%an%Creset, %ar%C(yellow)%d%Creset%n %C(normal dim italic)%s%Creset'
     df = difftool -t vimdiff -y
@@ -16,6 +17,7 @@
     sweep = clean -Xdf  # Removes all ignored files
     wipe = clean -xdf   # Removes all untracked files
     nope = reset --soft HEAD~
+    herb = "!git rebase -i HEAD~$1 && echo '🌿'"
     poule = !git pull && echo '🐔'
     pousse = !git push && echo '🌱'
     fpull = !~/.local/share/git/git-fpull.sh

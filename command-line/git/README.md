@@ -22,6 +22,7 @@ git config --global --add include.path '~/.config/git/config'
 | Command                   | Effect                                                   |
 |---------------------------|----------------------------------------------------------|
 | `st`                      | Summarized `status`                                      |
+| `cp`                      | Alias for `cherry-pick`                                  |
 | `ll`                      | Compact pretty `log`                                     |
 | `lg`                      | Detailed pretty `log`                                    |
 | `df`                      | `diff` with `vimdiff`                                    |
@@ -32,11 +33,13 @@ git config --global --add include.path '~/.config/git/config'
 | `rclone`                  | Parallel recursive `clone`                               |
 | `sup`                     | Recursive submodule update                               |
 | `recurse <cmd> [args...]` | Executes a command in the repository and its submodules  |
+| `detach <ref>`            | Switch to a given reference/tag in detached mode         |
 | `staged`                  | `diff` between `HEAD` and staged files                   |
 | `unstage <path...>`       | Ustages modifications                                    |
 | `sweep`                   | Removes all ingored files                                |
 | `wipe`                    | Removes all untracked files                              |
 | `nope`                    | Cancels last `commit`, leaves modifications in stage     |
+| `herb <nb_commits>`       | Interactive rebase on `HEAD`                             |
 | `poule`                   | Funny `pull`                                             |
 | `pousse`                  | Funny `push`                                             |
 | `fpull`                   | Synchronises the current branch with its upstream        |
