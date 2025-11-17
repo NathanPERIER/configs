@@ -31,7 +31,7 @@ The `~/.bash_local` file is intended to set machine-specific variables. It can n
 | `MACHINE_TYPE`  | `wsl`, `desktop`, `server`                     |
 | `TERMINAL_TYPE` | `gnome`, `windows`, `vscode`, `xterm`, `other` | 
 
-> Note: the desktop/server detection is currently done by checking the presence of an X server, which may not be accurate and will only work on Debian systems
+> Note: the desktop/server detection is currently done by checking some environment variables and the existance of a given binary, may not work on all systems
 
 ### User variables
 
@@ -85,6 +85,8 @@ The `~/.bash_local` file is intended to set machine-specific variables. It can n
 ### Prompt
 
 There are several prompts presets that can be enabled by setting the `prompt_style` and `colour_prompt_style` in the local configurtion file. By default, `colour_prompt_style` takes the value of `prompt_style`, which is the `default` prompt.
+
+If a `starship_theme` variable exists and the `starship` binary is installed, the other variables are not taken into account and [starship](https://starship.rs/) is used to manage the prompt, using the associated TOML configuration in `~/.config/starship`.
 
 For coloured prompts, the user can also define the `user_colour_code` and `path_colour_code` (from `30` to `37`) to tweak the colours. By default, the username and hostname are in green for non-root users and mangenta for root, and the path is in blue.
 
