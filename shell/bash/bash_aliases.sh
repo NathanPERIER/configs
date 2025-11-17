@@ -54,9 +54,13 @@ alias vpip='vpython -m pip'
 alias eclp='rm -f ~/.eclipse_history; rlwrap eclipse'
 
 # by the way, I use vim
-alias ed='vim'
-alias nano='vim'
-alias emacs='vim'
+if [[ "$shared_homedir" != true ]] || command -v ed > /dev/null; then
+    alias ed='vim'
+fi
+if [[ "$shared_homedir" != true ]]; then
+    alias nano='vim'
+    alias emacs='vim'
+fi
 
 # quick edit and reload of the .bashrc
 alias eb='vim ~/.bashrc'
@@ -264,3 +268,5 @@ alias wq='exit'
 if [[ "$MACHINE_TYPE" = 'desktop' ]]; then
 	alias dodo='shutdown +0'
 fi
+
+unset shared_homedir

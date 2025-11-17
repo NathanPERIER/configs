@@ -33,6 +33,13 @@ The `~/.bash_local` file is intended to set machine-specific variables. It can n
 
 > Note: the desktop/server detection is currently done by checking the presence of an X server, which may not be accurate and will only work on Debian systems
 
+### User variables
+
+| Variable         | Default       | Effect                                                                                                                             |
+|------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------|
+| `colour_support` | auto-detected | Enables coloured output for common utilities by default (`ls`, `diff`, `grep`, `ip`)                                               |
+| `shared_homedir` | `false`       | Indicated that the home directory might be shared by several users (e.g. `root`) and that some intrusive features must be disabled |
+
 ### Aliases and functions
 
 | Command                           | Description                                                                              |
@@ -46,7 +53,7 @@ The `~/.bash_local` file is intended to set machine-specific variables. It can n
 | `python`                          | Force call to `python3`                                                                  |
 | `pip`                             | Force call to `pip3`                                                                     |
 | `eclp`                            | You do not want to ask                                                                   |
-| `ed`, `nano`, `emacs`             | Redirect any file editor to `vim`                                                        |
+| `ed`, `nano`, `emacs`             | Redirect any file editor to `vim` (unless in shared environments)                        |
 | `eb`                              | Edit `~/.bashrc`                                                                         |
 | `ebv`                             | Edit `~/.config/bash/variables`                                                          |
 | `ebl`                             | Edit `~/.bash_local'`                                                                    |
