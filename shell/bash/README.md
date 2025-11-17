@@ -3,6 +3,8 @@
 
 ## Install
 
+Login configuration file : `profile.sh` -> `~/.profile`
+
 Main configuration file : `bashrc.sh` -> `~/.bashrc`
 
 Additional files :

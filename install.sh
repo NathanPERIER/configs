@@ -56,7 +56,7 @@ if [[ "$do_bash" = true ]] || [[ "$do_all" = true ]]; then
 	bash_config_dir="${HOME}/.config/bash"
 	[[ -d "$bash_config_dir" ]] || mkdir "$bash_config_dir"
 
-	install_file "${this_dir}/shell/profile.sh" ~/.profile
+	install_file "${this_dir}/shell/bash/profile.sh" ~/.profile
 	install_file "${this_dir}/shell/bash/bashrc.sh" ~/.bashrc
 	install_file "${this_dir}/shell/bash/bash_variables.sh" "${bash_config_dir}/variables"
 	install_file "${this_dir}/shell/bash/bash_aliases.sh" "${bash_config_dir}/aliases"
