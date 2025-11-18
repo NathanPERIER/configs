@@ -1,88 +1,28 @@
 
 # Bash configuration
 
-## Install
+## Files
 
-Login configuration file : `profile.sh` -> `~/.profile`
+- **Main configuration file**: `bashrc.sh` -> `~/.bashrc`
+- **Variables script**: `bash_variables.sh` -> `~/.config/bash/variables`
+- **Local script**: `~/.bash_local`
+- **Aliases script**: `bash_aliases.sh` -> `~/.config/bash/aliases`
+- **Prompt script**: `bash_prompt.sh` -> `~/.config/bash/prompt`
 
-Main configuration file : `bashrc.sh` -> `~/.bashrc`
+### Login shell
 
-Additional files :
+Bash uses a specific script for login shells, which can be used to modify environment variables for the entire user session. There is also an optional additional file for case-by-case customisations :
 
-- `bash_aliases.sh` -> `~/.config/bash/aliases`
-- `bash_variables.sh` -> `~/.config/bash/variables`
-- `bash_prompt.sh` -> `~/.config/bash/prompt`
+- **Main configuration file**: `profile.sh` -> `~/.profile`
+- **Local script**: `~/.profile_local`
 
-### Start sequence
+The file tracked in this repository adds the following directories to the `PATH` if they are not already there :
 
-The `~/.bashrc` sources the files in the following order if they exist :
-
-1. `~/.config/bash/variables`
-2. `~/.bash_local`
-3. `~/.config/bash/aliases`
-4. `~/.config/bash/prompt`
-
-The `~/.bash_local` file is intended to set machine-specific variables. It can namely be used to modify variables set by the firt file, which may have an influence on the following scripts.
+- `/usr/sbin`
+- `${HOME}/bin`
+- `${HOME}/.local/bin`
 
 ## Features
-
-### Environment variables
-
-| Variable        | Values                                         |
-|-----------------|------------------------------------------------|
-| `MACHINE_TYPE`  | `wsl`, `desktop`, `server`                     |
-| `TERMINAL_TYPE` | `gnome`, `windows`, `vscode`, `xterm`, `other` | 
-
-> Note: the desktop/server detection is currently done by checking some environment variables and the existance of a given binary, may not work on all systems
-
-### User variables
-
-| Variable         | Default       | Effect                                                                                                                             |
-|------------------|---------------|------------------------------------------------------------------------------------------------------------------------------------|
-| `colour_support` | auto-detected | Enables coloured output for common utilities by default (`ls`, `diff`, `grep`, `ip`)                                               |
-| `shared_homedir` | `false`       | Indicated that the home directory might be shared by several users (e.g. `root`) and that some intrusive features must be disabled |
-
-### Aliases and functions
-
-| Command                           | Description                                                                              |
-|-----------------------------------|------------------------------------------------------------------------------------------|
-| `l`                               | Short `ls`                                                                               |
-| `ll`                              | Detailed `ls`                                                                            |
-| `lli`                             | Detailed `ls` with inodes                                                                |
-| `lla`                             | Detailed `ls` including hidden files                                                     |
-| `ok`, `mb`                        | Does nothing and returns `0`, used to clear the return code                              |
-| `xx`                              | Clears the terminal                                                                      |
-| `python`                          | Force call to `python3`                                                                  |
-| `pip`                             | Force call to `pip3`                                                                     |
-| `eclp`                            | You do not want to ask                                                                   |
-| `ed`, `nano`, `emacs`             | Redirect any file editor to `vim` (unless in shared environments)                        |
-| `eb`                              | Edit `~/.bashrc`                                                                         |
-| `ebv`                             | Edit `~/.config/bash/variables`                                                          |
-| `ebl`                             | Edit `~/.bash_local'`                                                                    |
-| `eba`                             | Edit `~/.config/bash/aliases'`                                                           |
-| `ebp`                             | Edit `~/.config/bash/prompt'`                                                            |
-| `sb`                              | Source `~/.bashrc`                                                                       |
-| `led <path>`                      | `ll` if the target is a directory, `ed` if it is a writable file (or doesn't exist), else `less` |
-| `mkd <path>`                      | Create a directory and `cd` into it                                            |
-| `rmd`                             | Remove the current directory if empty and `cd` to its parent                   |
-| `wdiff`                           | Word-level diff (using `git`)                                                  |
-| `ipinfo`                          | Get the public IP address the machine uses to access the internet              |
-| `music-dl`                        | Download musics via `yt-dlp` (only enabled if the program is installed)        |
-| `mktgz`                           | Compress files in a `.tar.gz`                                                  |
-| `untgz`                           | Uncompress a `.tar.gz`                                                         |
-| `lstar`                           | Like `ls`/`find` in a `.tar`/`.tar.gz`/...                                     |
-| `f <pattern>`                     | Find a file by name in the current directory                                   |
-| `ff <pattern> [filename_pattern]` | Find files containing a given pattern in the current directory                 |
-| `mext <file> <extension>`         | Move extension, appends or removes an extension at the end of a file name (or swaps files if both exist) |
-| `syslog`                          | Read the syslog output                                                         |
-| `here`                            | Open a new terminal in the current location (desktop only)                     |
-| `xo`                              | Open a file/folder with the default program (desktop only)                     |
-| `mk`                              | Compile with `make` on all cores                                               |
-| `solong`                          | Kill a program by name (`pkill`) with the `SIGKILL` signal                     |
-| `q`, `wq`                         | Exit the current terminal                                                      |
-| `dodo`                            | Shuts the computer down (desktop only)                                         |
-
-> Note: if the variable `colour_support` is set to `yes`, automatic colouring will be enabled for `ls`, `grep` and `ip` (i.e. the text will coloured only if the output is a terminal). This is autodetected in the variables script but can be overridden.
 
 ### Prompt
 
