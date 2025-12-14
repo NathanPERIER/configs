@@ -125,7 +125,7 @@ alias wdiff='git diff -U0 --word-diff --no-index --'
 alias ipinfo='curl ipinfo.io/ip'
 
 # download musics
-if which yt-dlp > /dev/null
+if command -v yt-dlp > /dev/null
 	alias music-dl='yt-dlp --extract-audio --audio-format mp3 --embed-thumbnail'
 end
 
@@ -209,7 +209,7 @@ alias mk="make -j $(nproc)"
 alias nj="ninja -j $(nproc)"
 
 # quick Meson update
-if which meson > /dev/null
+if command -v meson > /dev/null
     alias msup='meson subprojects update'
 end
 

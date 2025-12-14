@@ -39,13 +39,13 @@ fi
 
 prompt_path='\w'
 if [[ -n "$prompt_shorten_path" ]]; then
-	if [[ "$prompt_shorten_path" = 'true' ]] && which pwd-short > /dev/null; then
+	if [[ "$prompt_shorten_path" = 'true' ]] && command -v pwd-short > /dev/null; then
 		prompt_path='$(pwd-short)'
 	fi
 	unset prompt_shorten_path
 fi
 
-if [[ -n "$starship_theme" ]] && which starship 1>&2 > /dev/null; then
+if [[ -n "$starship_theme" ]] && command -v starship 1>&2 > /dev/null; then
 	starship_conf_dir="$HOME/.config/starship"
 	if [[ "$starship_theme" = 'local' ]]; then
 		: # previously set in `.bash_local` and must not be changed

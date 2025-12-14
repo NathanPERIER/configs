@@ -13,7 +13,7 @@ if [ "$colour_support" = yes ]; then
 		unset custom_colour_profile
 	fi
 
-	if [[ "$ls_colors_ok" != 'true' ]] && which dircolors 2>&1 > /dev/null; then
+	if [[ "$ls_colors_ok" != 'true' ]] && command -v dircolors 2>&1 > /dev/null; then
     	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 	fi
 	unset ls_colors_ok
@@ -132,7 +132,7 @@ alias wdiff='git diff -U0 --word-diff --no-index --'
 alias ipinfo='curl ipinfo.io/ip'
 
 # download musics
-if which yt-dlp > /dev/null 2>&1; then
+if command -v yt-dlp > /dev/null 2>&1; then
 	alias music-dl='yt-dlp --extract-audio --audio-format mp3 --embed-thumbnail'
 fi
 
@@ -253,7 +253,7 @@ alias mk="make -j $(nproc)"
 alias nj="ninja -j $(nproc)"
 
 # quick Meson update
-if which meson > /dev/null 2>&1; then
+if command -v meson > /dev/null 2>&1; then
     alias msup='meson subprojects update'
 fi
 

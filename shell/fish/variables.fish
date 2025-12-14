@@ -4,7 +4,7 @@ if printenv | grep '^WSL_DISTRO_NAME=' > /dev/null
 	set -x MACHINE_TYPE 'wsl'
 else if test "$XDG_SESSION_TYPE" = 'tty'
 	set -x MACHINE_TYPE 'server'
-else if test -n "$XDG_SESSION_TYPE" || test -n "$XDG_CURRENT_DESKTOP" || which xdg-desktop-menu > /dev/null
+else if test -n "$XDG_SESSION_TYPE" || test -n "$XDG_CURRENT_DESKTOP" || command -v xdg-desktop-menu > /dev/null
 	set -x MACHINE_TYPE 'desktop'
 else
 	set -x MACHINE_TYPE 'server'
