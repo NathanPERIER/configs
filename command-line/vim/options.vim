@@ -2,6 +2,9 @@
 " enable colour syntax
 syntax on
 
+" enable ftplugin
+filetype plugin on
+
 " set tab length and indentation
 set tabstop=4
 " set softtabstop=4
