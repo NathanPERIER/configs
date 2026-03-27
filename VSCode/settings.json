@@ -1,14 +1,14 @@
 {
     "accessibility.verbosity.inlineChat": false,
+    "accessibility.verbosity.panelChat": false,
     "chat.agent.enabled": false,
-    "chat.commandCenter.enabled": false,
     "chat.detectParticipant.enabled": false,
     "chat.disableAIFeatures": true,
-    "chat.edits2.enabled": false,
     "chat.extensionTools.enabled": false,
     "chat.implicitContext.enabled": {
         "panel": "never"
     },
+    "chat.implicitContext.suggestedContext": false,
     "chat.mcp.access": "none",
     "chat.mcp.discovery.enabled": {
         "claude-desktop": false,
@@ -16,7 +16,6 @@
         "cursor-global": false,
         "cursor-workspace": false
     },
-    "chat.promptFiles": false,
     "chat.sendElementsToChat.enabled": false,
     "chat.sendElementsToChat.attachImages": false,
     "chat.sendElementsToChat.attachCSS": false,
@@ -37,6 +36,8 @@
     "telemetry.feedback.enabled": false,
     "telemetry.telemetryLevel": "off",
     "terminal.integrated.fontLigatures.enabled": true,
+    "terminal.integrated.initialHint": false,
+    "workbench.colorTheme": "Dark Modern",
     "workbench.commandPalette.experimental.enableNaturalLanguageSearch": false,
     "workbench.editor.empty.hint": "hidden",
     "workbench.settings.enableNaturalLanguageSearch": false
